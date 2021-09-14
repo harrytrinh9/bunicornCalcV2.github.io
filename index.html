@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bunicorn Power calculator</title>
+    <link rel="icon" href="assets/land-icon.png">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+</head>
+<body>
+  <div class="container-fluid mt-3">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4">
+      <div class="col">
+        <div class="card">
+          <div class="card-header">
+            <div class="row">
+              <div class="col">
+                <img id='imgTrainerElement' height="30px" alt="" class="ml-2"> 
+                <strong>Trainer</strong>
+              </div>
+              <div class="col">
+                <select id='txtTrainerElement' class="form-select form-select-sm" title="Select trainer element">
+                  <option value="">--</option>
+                  <option value="FIRE">Fire</option>
+                  <option value="EARTH">Earth</option>
+                  <option value="AIR">Air</option>
+                  <option value="WATER">Water</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col">
+                <div class="mb-3">
+                 <label for="txtTrainerPower"><i class="bi bi-lightning-charge-fill"></i>Trainer power</label>
+                 <input type="text" class="form-control form-control-sm" id="txtTrainerPower" placeholder="0">
+               </div>
+               </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card">
+          <div class="card-header">
+            <div class="row">
+              <div class="col">
+                <img id='imgBunicornElement' height="30px" alt="" class="ml-2"> 
+                <strong>Bunicorn</strong>
+              </div>
+              <div class="col">
+                <select id='txtBunicornElement' class="form-select form-select-sm" title="Select bunicorn element">
+                  <option value="">--</option>
+                  <option value="FIRE">Fire</option>
+                  <option value="EARTH">Earth</option>
+                  <option value="AIR">Air</option>
+                  <option value="WATER">Water</option>
+                </select>
+              </div>
+            </div>
+
+          </div>
+          <div class="card-body">
+            <!--LB-->
+            <div class="row">
+              <div class="col">
+                <div class="mb-3">
+                  <label for="txtAttribute1">Attribute 1</label>
+                  <select id='txtAttribute1' class="form-select form-select-sm">
+                    <option value="">--</option>
+                    <option value="FIRE">FIRE</option>
+                    <option value="EARTH">EARTH</option>
+                    <option value="AIR">AIR</option>
+                    <option value="WATER">WATER</option>
+                    <option value="NEUTRAL">NEUTRAL</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col">
+                <div class="mb-3">
+                  <label for="">Value</label>
+                  <input type="text" id='txtAttribute1Val' class="form-control form-control-sm" placeholder="0">
+                </div>
+              </div>
+            </div>
+            <p>
+              <a class="btn btn-outline-success btn-sm" data-bs-toggle="collapse" href="#collapseMoreAttrib" role="button" aria-expanded="false" aria-controls="collapseMoreAttrib">
+                <i class="bi bi-plus-lg"></i>
+                More Attribute
+              </a>
+            </p>
+            <div class="collapse" id="collapseMoreAttrib">
+              <div class="row">
+                <div class="col">
+                  <div class="mb-3">
+                    <label for="txtAttribute2">Attribute 2</label>
+                    <select id='txtAttribute2' class="form-select form-select-sm">
+                      <option value="">--</option>
+                      <option value="FIRE">FIRE</option>
+                      <option value="EARTH">EARTH</option>
+                      <option value="AIR">AIR</option>
+                      <option value="WATER">WATER</option>
+                      <option value="NEUTRAL">NEUTRAL</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="mb-3">
+                    <label for="txtAttribute2Val">Value</label>
+                    <input type="text" id='txtAttribute2Val' class="form-control form-control-sm" placeholder="0">
+                  </div>
+                </div>
+              </div>
+              
+              <div class="row">
+                <div class="col">
+                  <div class="mb-3">
+                    <label for="txtAttribute3">Attribute 3</label>
+                    <select id='txtAttribute3' class="form-select form-select-sm">
+                      <option value="">--</option>
+                      <option value="FIRE">FIRE</option>
+                      <option value="EARTH">EARTH</option>
+                      <option value="AIR">AIR</option>
+                      <option value="WATER">WATER</option>
+                      <option value="NEUTRAL">NEUTRAL</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="mb-3">
+                    <label for="">Value</label>
+                    <input type="text" id='txtAttribute3Val' class="form-control form-control-sm" placeholder="0">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!--Bonus power-->
+            <div class="row">
+              <div class="col">
+                <div class="mb-3">
+                  <label for="">Bonus Attribute</label>
+                  <input type="text" id='txtBonusPower' class="form-control form-control-sm" placeholder="0">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card">
+          <div class="card-header">
+            <div class="row">
+              <div class="col">
+                <img id='imgEnemyElement' height="30px"  alt="" class="ml-2"> 
+                <strong>Enemy</strong> 
+              </div>
+              <div class="col">
+                <select id='txtEnemyElement' class="form-select form-select-sm">
+                  <option value="">--</option>
+                  <option value="FIRE">Fire</option>
+                  <option value="EARTH">Earth</option>
+                  <option value="AIR">Air</option>
+                  <option value="WATER">Water</option>
+                </select>
+              </div>
+            </div>
+
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col">
+                <div class="mb-3">
+                  <label for=""><i class="bi bi-lightning-charge-fill"></i>Enemy power</label>
+                  <input type="text" id='txtEnemyPower' class="form-control form-control-sm" placeholder="0">
+                </div>
+              </div>
+            </div>
+            <!-- <div class="row">
+                <h6 id='lbEnemyPwrRange' class="text-danger"></p>
+            </div> -->
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card">
+          <h5 class="card-header">Result</h5>
+          <div class="card-body">
+            <div class="row">
+                <div class="col">
+                    <button type="button" id='btnCalc' class="btn btn-success">
+                      <i class="bi-calculator"></i>
+                      Calculate
+                    </button>
+                </div>
+            </div>
+            <div class="row mt-3">
+              <div class="col">
+                <h6 id='lbEnemyPwrRange'></h6>
+                <h6 id='lbResult'></h6>
+                <h4 id='lbWinRate'></h5>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row mt-3">
+    <p class="text-center">If you like my work, you can give me a cup of coffee (BUNI, BUR, BNB) to my wallet</p>
+    <p class="text-primary text-center" style="font-size: small;">0x54529107acD03401C7d9E12DEbf7fD30c5e75D62 <i class="btn bi-clipboard" style="font-weight: bold;" onclick="copyAddr('0x54529107acD03401C7d9E12DEbf7fD30c5e75D62')"></i></p>
+    <p class="text-center">
+      <span><i class="bi-telegram"></i> Telegram: <a href="https://t.me/harrytrinh">@harrytrinh</a></span>
+    </p>
+  </div>
+  </div>
+      <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.4/dist/sweetalert2.all.min.js"></script>
+    <script src="scripts/main.js?n=1"></script>
+    <script src="scripts/Input-handler.js?n=1"></script>
+</body>
+</html>
