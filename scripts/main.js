@@ -279,7 +279,7 @@ function rewardUSD(enemyPower, bunicorn_star){
 // hằng số reward_baseline = 0.4 (USD)
     enemyPower = parseInt(enemyPower);
     const reward_gas_offset = 0.5;
-    const reward_baseline = 0.4;
+    const reward_baseline = 0.5;
     let reward_multiplier = Math.sqrt(enemyPower/1000 * bunicorn_star)
     let reward = reward_gas_offset + reward_baseline * reward_multiplier;
     return reward.toFixed(2);
