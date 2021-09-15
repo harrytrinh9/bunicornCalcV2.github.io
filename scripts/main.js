@@ -177,33 +177,37 @@ $('#btnCalc').on('click', function(){
     var minEnemyPwr = parseInt(enemyPwr) * 0.9;
     var maxEnemyPwr = parseInt(enemyPwr) * 1.1;
     var winRate = 0.0;
-    var buniPWR = bunicornPower(bunicornElement, attribute1, attribute2, attribute3, attribute1Val, attribute2Val, attribute3Val, bonusPower);
-    var PlayerPWR = playerPower(trainerElement, trainerPower, bunicornElement, buniPWR, enemyElement);
+    var buniPWR = bunicornPowerMultiplier(bunicornElement, attribute1, attribute2, attribute3, attribute1Val, attribute2Val, attribute3Val, bonusPower);
+    var playerBasePWR = playerBasePower(trainerPower, buniPWR);
+    var PlayerPWR = playerPower(playerBasePWR, trainerElement, bunicornElement, enemyElement);
     var pwr = [PlayerPWR * 0.9, PlayerPWR * 1.1]
 
+    var exp = expGain(enemyPwr, playerBasePWR);
+    var rwUSD = rewardUSD(enemyPwr, getStar())
     var str = `<i class="bi bi-lightning-charge"></i> Your power: ${Math.floor(pwr[0])} ~ ${Math.floor(pwr[1])}`;
     $('#lbResult').html(str);
     winRate = winRateCalc(Math.floor(pwr[0]), Math.floor(pwr[1]), Math.floor(minEnemyPwr), Math.floor(maxEnemyPwr));
     
-
     $('#lbWinRate').html('<i class="bi bi-trophy"></i> Win rate: ' + Math.floor(winRate) + '%');
     $('#lbWinRate').prop('class', '');
     var icon = winRate < 90 ? 'warning':'success';
     var txtClass = winRate < 90 ? 'text-danger':'text-success';
     $('#lbWinRate').addClass(txtClass);
+
+    $('#lbExpGained').html('+' + exp + ' XP')
+    $('#lbReward').html('Reward: ~$' + rwUSD)
+
     Toast(`Win rate: ${Math.floor(winRate)}%`, icon);
 
 })
 
 
-function bunicornPower(bunicornElement, attribute1, attribute2, attribute3, attribute1Val, attribute2Val, attribute3Val, bonusAttribute){
+function bunicornPowerMultiplier(bunicornElement, attribute1, attribute2, attribute3, attribute1Val, attribute2Val, attribute3Val, bonusAttribute){
     const attribute_baseline = 500;
-
     attribute1Val = parseInt(attribute1Val);
     attribute2Val = parseInt(attribute2Val);
     attribute3Val = parseInt(attribute3Val);
     bonusAttribute = parseInt(bonusAttribute);
-
 
     attribute1Val = attribute1Val * factor(bunicornElement, attribute1);
     if(attribute2Val > 0){
@@ -225,58 +229,90 @@ Bonus attribute cũng được cộng vào công thức này, factor = 1.05 gi�
 
 function factor(bunicornElement, attributeElement){
     let factor = 1;
-    if(bunicornElement === attributeElement){
+    if(attributeElement === bunicornElement){
         factor = 1.1;
     }
     else if(attributeElement === 'NEUTRAL'){
         factor = 1.05;
     }
     return factor;
-
 }
 
-function playerPower(trainerElement, trainerPower, bunicornElement, bunicornPower, enemyElement){
-    trainerPower = trainerPower * bunicornPower;
+function playerBasePower(trainerPower, bunicornPowerMultiplier){
+    return trainerPower * bunicornPowerMultiplier;
+}
+
+function playerPower(playerBasePower, trainerElement, bunicornElement, enemyElement){
+    let bonus = (playerBasePower * 0.065); // 6.5%
     if(trainerElement === bunicornElement){
-        trainerPower += (trainerPower * 0.065) // x 6.5%
+        playerBasePower += bonus;
     }
     if(trainerElement == 'FIRE' && enemyElement == 'EARTH'){
-        trainerPower += (trainerPower * 0.065);
+        playerBasePower += bonus;
     }
     if(trainerElement == 'FIRE' && enemyElement == 'WATER'){
-        trainerPower -= (trainerPower * 0.065);
+        playerBasePower -= bonus;
     }
     if(trainerElement == 'EARTH' && enemyElement == 'AIR'){
-        trainerPower += (trainerPower * 0.065);
+        playerBasePower += bonus;
     }
     if(trainerElement == 'EARTH' && enemyElement == 'FIRE'){
-        trainerPower -= (trainerPower * 0.065);
+        playerBasePower -= bonus;
     }
     if(trainerElement == 'AIR' && enemyElement == 'WATER'){
-        trainerPower += (trainerPower * 0.065);
+        playerBasePower += bonus;
     }
     if(trainerElement == 'AIR' && enemyElement == 'EARTH'){
-        trainerPower -= (trainerPower * 0.065);
+        playerBasePower -= bonus;
     }
     if(trainerElement == 'WATER' && enemyElement == 'FIRE'){
-        trainerPower += (trainerPower * 0.065);
+        playerBasePower += bonus;
     }
     if(trainerElement == 'WATER' && enemyElement == 'AIR'){
-        trainerPower -= (trainerPower * 0.065);
+        playerBasePower -= bonus;
     }
-    return trainerPower;
+    return playerBasePower;
 }
 
 function rewardUSD(enemyPower, bunicorn_star){
 //     hằng số reward_gas_offset = 0.5 (USD)
 // hằng số reward_baseline = 0.4 (USD)
+    enemyPower = parseInt(enemyPower);
     const reward_gas_offset = 0.5;
     const reward_baseline = 0.4;
     let reward_multiplier = Math.sqrt(enemyPower/1000 * bunicorn_star)
     let reward = reward_gas_offset + reward_baseline * reward_multiplier;
-    return reward;
+    return reward.toFixed(2);
 }
 
+function expGain(enemyPower, playerBasePower){
+    enemyPower = parseInt(enemyPower);
+    let expGained = Math.floor((enemyPower/playerBasePower) * 32);
+    return expGained;
+}
+
+function getStar(){
+    var star5 = $('#star5').prop('checked');
+    var star4 = $('#star4').prop('checked');
+    var star3 = $('#star3').prop('checked');
+    var star2 = $('#star2').prop('checked');
+    var star1 = $('#star1').prop('checked');
+    if(star5){
+        return 5;
+    }
+    if(star4){
+        return 4;
+    }
+    if(star3){
+        return 3;
+    }
+    if(star2){
+        return 2;
+    }
+    if(star1){
+        return 1;
+    }
+}
 
 
 function winRateCalc(minYourPower, maxYourPower, minEnemyPower, maxEnemyPower){

@@ -9,6 +9,7 @@
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">  
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="styles/stars.css">
 </head>
 <body>
   <div class="container-fluid mt-3">
@@ -52,19 +53,36 @@
                 <img id='imgBunicornElement' height="30px" alt="" class="ml-2"> 
                 <strong>Bunicorn</strong>
               </div>
-              <div class="col">
-                <select id='txtBunicornElement' class="form-select form-select-sm" title="Select bunicorn element">
-                  <option value="">--</option>
-                  <option value="FIRE">Fire</option>
-                  <option value="EARTH">Earth</option>
-                  <option value="AIR">Air</option>
-                  <option value="WATER">Water</option>
-                </select>
-              </div>
+              
+                <div class="col">
+                  <select id='txtBunicornElement' class="form-select form-select-sm" title="Select bunicorn element">
+                    <option value="">--</option>
+                    <option value="FIRE">Fire</option>
+                    <option value="EARTH">Earth</option>
+                    <option value="AIR">Air</option>
+                    <option value="WATER">Water</option>
+                  </select>
+                </div>
+
+
             </div>
 
           </div>
           <div class="card-body">
+            <div class="row">
+              <div id="rating">
+                <input type="radio" id="star5" name="rating" value="5" />
+                <label class = "full" for="star5" title="5 stars"></label>
+                <input type="radio" id="star4" name="rating" value="4" />
+                <label class = "full" for="star4" title="4 stars"></label>
+                <input type="radio" id="star3" name="rating" value="3" />
+                <label class = "full" for="star3" title="3 stars"></label>
+                <input type="radio" id="star2" name="rating" value="2" />
+                <label class = "full" for="star2" title="2 stars"></label>
+                <input type="radio" id="star1" name="rating" value="1" checked />
+                <label class = "full" for="star1" title="1 star"></label>
+            </div>
+            </div>
             <!--LB-->
             <div class="row">
               <div class="col">
@@ -202,7 +220,9 @@
               <div class="col">
                 <h6 id='lbEnemyPwrRange'></h6>
                 <h6 id='lbResult'></h6>
-                <h4 id='lbWinRate'></h5>
+                <h6 id='lbExpGained' style="color: #28aafd;"></h6>
+                <h5 id='lbWinRate'></h5>
+                <h5 id='lbReward'></h5>
             </div>
             </div>
           </div>
@@ -223,5 +243,12 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.4/dist/sweetalert2.all.min.js"></script>
     <script src="scripts/main.js?n=1"></script>
     <script src="scripts/Input-handler.js?n=1"></script>
+    <!-- <script>
+      function calcRate(r) {
+        const f = ~~r,//Tương tự Math.floor(r)
+        id = 'star' + f + (r % f ? 'half' : '')
+        id && (document.getElementById(id).checked = !0)
+      }
+    </script> -->
 </body>
 </html>
