@@ -137,26 +137,26 @@ $('#btnCalc').on('click', function(){
         return;
     }
     if (bunicornElement == ''){
-        MsgBox("Please select your bunicorn element", '', 'error');
+        MsgBox("Please select your Bunicorn element", '', 'error');
         return;
     }
     if (attribute1 == ''){
-        MsgBox("Please select bunicorn attribute 1 element", '', 'error');
+        MsgBox("Please select Bunicorn attribute 1 element", '', 'error');
         return;
     }
     if(attribute1 != '' && attribute1Val == ''){
-        MsgBox("Please input bunicorn attribute 1 value", '', 'error');
+        MsgBox("Please input Bunicorn attribute 1 value", '', 'error');
         return;
     }
     if(attribute2 != '' && attribute2Val == ''){
-        MsgBox("Please input bunicorn attribute 2 value", '', 'error');
+        MsgBox("Please input Bunicorn attribute 2 value", '', 'error');
         return;
     }
     else if (attribute2 == ''){
         attribute2Val = 0;
     }
     if(attribute3 != '' && attribute3Val == ''){
-        MsgBox("Please input bunicorn attribute 3 value", '', 'error');
+        MsgBox("Please input Bunicorn attribute 3 value", '', 'error');
         return;
     }
     else if (attribute3 == ''){
@@ -366,3 +366,8 @@ function Toast(text, icon='info'){
     });
 }
 
+function getIframeContents(){
+    var iframe = document.getElementById("frame1");
+    var elmnt = iframe.contentWindow.document.getElementsByTagName("pre")[0];
+    return elmnt;
+}

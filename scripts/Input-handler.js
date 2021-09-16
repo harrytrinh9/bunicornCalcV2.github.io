@@ -64,6 +64,7 @@ $('#txtTrainerElement').on('change', function(){
         img.attr('src', 'assets/water-icon.png');
         select.prop('style', 'background-color: #17f7fd');
     }
+    $('#txtTrainerPower').focus();
 })
 
 $('#txtBunicornElement').on('change', function(){
@@ -118,7 +119,21 @@ $('#txtEnemyElement').on('change', function(){
         img.attr('src', 'assets/water-icon.png');
         select.prop('style', 'background-color: #17f7fd');
     }
+    $('#txtEnemyPower').focus();
 })
+
+$('#txtAttribute1').on('change', () =>{
+    $('#txtAttribute1Val').focus();
+})
+
+$('#txtAttribute2').on('change', () =>{
+    $('#txtAttribute2Val').focus();
+})
+
+$('#txtAttribute3').on('change', () =>{
+    $('#txtAttribute3Val').focus();
+})
+
 
 $('#txtEnemyPower').on('input', function(){
     var pwr = $('#txtEnemyPower').val();
@@ -130,6 +145,8 @@ $('#txtEnemyPower').on('input', function(){
     $('#lbEnemyPwrRange').html(output);
     $('#lbResult').html('');
     $('#lbWinRate').html('');
+    $('#lbExpGained').html('');
+    $('#lbReward').html('');
 })
 
 function copyAddr(add){
